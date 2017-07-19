@@ -5,6 +5,7 @@ from geometry_msgs.msg import Twist
 
 class GoForwardGoRight():
 def my_callback(event):
+   print 'Hwllo! cat!'
    print 'Timer called at ' + str(event.current_real)
    rospy.Timer(rospy.Duration(2), my_callback)
  def __init__(self):
@@ -61,3 +62,4 @@ if __name__ == '__main__':
         GoForwardGoRight()
     except:
         rospy.loginfo("GoForwardGoRight node terminated.")
+
