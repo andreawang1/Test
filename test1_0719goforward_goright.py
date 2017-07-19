@@ -40,14 +40,12 @@ class GoForwardGoRight():
 
         # as long as you haven't ctrl + c keeping doing...
         while not rospy.is_shutdown():
-            if my_callback {
-            self.cmd_vel.publish(moveR_cmd)
-            }
+            if my_callback()
+                self.cmd_vel.publish(moveR_cmd)
             else
-            self.cmd_vel.publish(move_cmd)# publish the velocity
+                self.cmd_vel.publish(move_cmd)# publish the velocity
             # wait for 0.1 seconds (10 HZ) and publish again
             r.sleep()
-
 
             def shutdown(self):
                 # stop turtlebot
