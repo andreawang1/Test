@@ -4,11 +4,11 @@ import rospy
 from geometry_msgs.msg import Twist
 
 class GoForwardGoRight():
-def my_callback(self):
+#    def my_callback(self):
         print 'Hwllo! cat!!!!!'
         print 'Timer called at ' + str(event.current_real)
         rospy.Timer(rospy.Duration(2), my_callback)
-        def __init__(self):
+            def __init__(self):
             # initiliaze
             rospy.init_node('GoForwardGoRight', anonymous=False)
 
