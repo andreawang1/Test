@@ -33,12 +33,9 @@ class goFR():
         turn_cmd.linear.x = 0
         turn_cmd.angular.z = radians(45); #45 deg/s in radians/s
 
-        stop_cmd = Twist()
-        stop_cmd.linear.x = 0
-
 	#two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
 
-        while not rospy.is_shutdown() & count == 0:
+        while not rospy.is_shutdown():
 	    # go forward 0.4 m (2 seconds * 0.2 m / seconds)
 	    rospy.loginfo("Going Straight")
             for x in range(0,10) :
