@@ -32,6 +32,9 @@ class goFR():
         turn_cmd = Twist()
         turn_cmd.linear.x = 0
         turn_cmd.angular.z = radians(45); #45 deg/s in radians/s
+    #stop
+        stop_cmd = Twist()
+        stop_cmd.linear.x = 0
 
         #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
         if ( data.button == ButtonEvent.Button0 ) :
@@ -46,14 +49,17 @@ class goFR():
                 for x in range(0,10) :
                     self.cmd_vel.publish(turn_cmd)
                     r.sleep()
+                for x in range(0,10) :
+                    self.cmd_vel.publish(stop_cmd)
+                    r.sleep()
 
                 rospy.loginfo("finish")
 
-    def shutdown(self):
+#    def shutdown(self):
         # stop turtlebot
-        rospy.loginfo("Stop Drawing Squares")
-        self.cmd_vel.publish(Twist())
-        rospy.sleep(1)
+#        rospy.loginfo("Stop Drawing Squares")
+#        self.cmd_vel.publish(Twist())
+#        rospy.sleep(1)
     def ButtonEventCallback(self,data):
 	    if ( data.state == ButtonEvent.RELEASED ) :
 		state = "released"
