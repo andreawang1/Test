@@ -33,20 +33,20 @@ class goFR():
         turn_cmd.linear.x = 0
         turn_cmd.angular.z = radians(45); #45 deg/s in radians/s
 
-	#two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
-
-        while not rospy.is_shutdown():
-	    # go forward 0.4 m (2 seconds * 0.2 m / seconds)
-	    rospy.loginfo("Going Straight")
-            for x in range(0,10) :
-                self.cmd_vel.publish(move_cmd)
-                r.sleep()
-	    # turn 90 degrees
-	    rospy.loginfo("Turning")
-            for x in range(0,10) :
-                self.cmd_vel.publish(turn_cmd)
-                count=count+1;
-                r.sleep()
+        #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
+        if ( data.button == ButtonEvent.Button0 ) :
+            while not rospy.is_shutdown():
+                # go forward 0.4 m (2 seconds * 0.2 m / seconds)
+                rospy.loginfo("Going Straight")
+                for x in range(0,10) :
+                    self.cmd_vel.publish(move_cmd)
+                    r.sleep()
+                    # turn 90 degrees
+                    rospy.loginfo("Turning")
+                for x in range(0,10) :
+                    self.cmd_vel.publish(turn_cmd)
+                    count=count+1;
+                    r.sleep()
 
                 rospy.loginfo("finish")
 
@@ -55,6 +55,19 @@ class goFR():
         rospy.loginfo("Stop Drawing Squares")
         self.cmd_vel.publish(Twist())
         rospy.sleep(1)
+    def ButtonEventCallback(self,data):
+	    if ( data.state == ButtonEvent.RELEASED ) :
+		state = "released"
+	    else:
+		state = "pressed"
+	    if ( data.button == ButtonEvent.Button0 ) :
+		button = "B0"
+	    elif ( data.button == ButtonEvent.Button1 ) :
+		button = "B1"
+	    else:
+		button = "B2"
+	    rospy.loginfo("Button %s was %s."%(button, state))
+
 
 if __name__ == '__main__':
     try:
