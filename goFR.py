@@ -6,7 +6,6 @@
 import rospy
 from geometry_msgs.msg import Twist
 from math import radians
-count = 0
 
 class goFR():
     def __init__(self):
@@ -15,9 +14,10 @@ class goFR():
 
         # What to do you ctrl + c
         rospy.on_shutdown(self.shutdown)
-
+        rospy.init_node("kobuki_button")
+        rospy.Subscriber("/mobile_base/events/button",ButtonEvent,self.ButtonEventCallback)
         self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
-
+        rospy.spin();
 	# 5 HZ
         r = rospy.Rate(5);
 
@@ -45,7 +45,6 @@ class goFR():
                     rospy.loginfo("Turning")
                 for x in range(0,10) :
                     self.cmd_vel.publish(turn_cmd)
-                    count=count+1;
                     r.sleep()
 
                 rospy.loginfo("finish")
