@@ -54,15 +54,15 @@ class goFR():
 
     def ButtonEventCallback(self,data):
         if ( data.state == ButtonEvent.RELEASED ) :
-    	state = "released"
+    	       state = "released"
         else:
-    	state = "pressed"
+    	       state = "pressed"
         if ( data.button == ButtonEvent.Button0 ) :
-    	button = "B0"
+    	       button = "B0"
         elif ( data.button == ButtonEvent.Button1 ) :
-    	button = "B1"
+    	       button = "B1"
         else:
-    	button = "B2"
+    	       button = "B2"
         rospy.loginfo("Button %s was %s."%(button, state))
 #    def shutdown(self):
 #        # stop turtlebot
