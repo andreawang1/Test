@@ -2,7 +2,6 @@
 
 # An example of TurtleBot 2 drawing a 0.4 meter square.
 # Written for indigo
-#利用draw_a_square 範例改成直走右轉停
 
 import rospy
 from geometry_msgs.msg import Twist
