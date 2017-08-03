@@ -56,7 +56,7 @@ class goFR():
     def shutdown(self):
         # stop turtlebot
         rospy.loginfo("Stop Drawing Squares")
-        self.cmd_vel.publish(stop_cmd)
+        self.cmd_vel.publish(Twist())
         rospy.sleep(1)
 
 if __name__ == '__main__':
