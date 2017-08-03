@@ -41,12 +41,12 @@ class goFR():
         while not rospy.is_shutdown()& count == 1:
 	    # go forward 0.4 m (2 seconds * 0.2 m / seconds)
 	    rospy.loginfo("Going Straight")
-            for count==0 :
+            for count=0 :
                 self.cmd_vel.publish(move_cmd)
                 r.sleep()
 	    # turn 90 degrees
 	    rospy.loginfo("Turning")
-            for count==0 :
+            for count=0 :
                 self.cmd_vel.publish(turn_cmd)
                 count=count+1;
                 r.sleep()
