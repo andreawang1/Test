@@ -33,7 +33,6 @@ class goFR():
         turn_cmd.angular.z = radians(45); #45 deg/s in radians/s
 
         #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
-        if ( data.button == ButtonEvent.Button0 ) :
             while not rospy.is_shutdown():
                 # go forward 0.4 m (2 seconds * 0.2 m / seconds)
                 rospy.loginfo("Going Straight")
