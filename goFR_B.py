@@ -16,7 +16,7 @@ class goFR_B():
         rospy.init_node("kobuki_button")
 
         # What to do you ctrl + c
-        rospy.on_shutdown(self.shutdown)
+#        rospy.on_shutdown(self.shutdown)
 
         self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
         rospy.Subscriber("/mobile_base/events/button",ButtonEvent,self.ButtonEventCallback)
@@ -37,8 +37,11 @@ class goFR_B():
         turn_cmd.linear.x = 0
         turn_cmd.angular.z = radians(45); #45 deg/s in radians/s
 
+        stop_cmd = Twist()
+        stop_cmd.linear.x = 0
+
         #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
-        while not rospy.is_shutdown() and data.button == ButtonEvent.Button0 :
+        if (not rospy.is_shutdown() and data.button == ButtonEvent.Button0) :
                 # go forward 0.4 m (2 seconds * 0.2 m / seconds)
             rospy.loginfo("Going Straight")
             for x in range(0,10) :
@@ -51,6 +54,8 @@ class goFR_B():
                 r.sleep()
 
             rospy.loginfo("finish")
+        else:
+            self.cmd_vel.publish(stop_cmd)
 
     def ButtonEventCallback(self,data):
         if ( data.state == ButtonEvent.RELEASED ) :
@@ -72,6 +77,6 @@ class goFR_B():
 
 if __name__ == '__main__':
     try:
-        goFR()
+        goFR_B()
     except:
         rospy.loginfo("node terminated.")
