@@ -28,11 +28,11 @@ class DrawASquare():
         # initiliaze
         rospy.init_node('drawasquare', anonymous=False)
 
-        # What to do you ctrl + c    
+        # What to do you ctrl + c
         rospy.on_shutdown(self.shutdown)
-        
+
         self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
-     
+
 	# 5 HZ
         r = rospy.Rate(5);
 
@@ -48,6 +48,8 @@ class DrawASquare():
         turn_cmd.linear.x = 0
         turn_cmd.angular.z = radians(45); #45 deg/s in radians/s
 
+        stop_cmd = Twist()
+        stop_cmd.linear.x = 0
 	#two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
 	count = 0
         while not rospy.is_shutdown():
@@ -60,23 +62,24 @@ class DrawASquare():
 	    rospy.loginfo("Turning")
             for x in range(0,10):
                 self.cmd_vel.publish(turn_cmd)
-                r.sleep()            
+                r.sleep()
+            for x in range(0,10) :
+                self.cmd_vel.publish(stop_cmd)
+                r.sleep()
 	    count = count + 1
-	    if(count == 4): 
+	    if(count == 4):
                 count = 0
-	    if(count == 0): 
+	    if(count == 0):
                 rospy.loginfo("TurtleBot should be close to the original starting position (but it's probably way off)")
-        
+
     def shutdown(self):
         # stop turtlebot
         rospy.loginfo("Stop Drawing Squares")
         self.cmd_vel.publish(Twist())
         rospy.sleep(1)
- 
+
 if __name__ == '__main__':
     try:
         DrawASquare()
     except:
         rospy.loginfo("node terminated.")
-
-
