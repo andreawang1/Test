@@ -42,7 +42,7 @@ class goFR_B():
 
         #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
 
-        if ( data.button == ButtonEvent.Button0) :
+        if ( a == 1) :
             # go forward 0.4 m (2 seconds * 0.2 m / seconds)
             rospy.loginfo("Going Straight")
             for x in range(0,10) :
@@ -58,18 +58,20 @@ class goFR_B():
                 self.cmd_vel.publish(stop_cmd)
                 r.sleep()
 
-    #def ButtonEventCallback(self,data):
-    #    if ( data.state == ButtonEvent.RELEASED ) :
-    #	       state = "released"
-    #    else:
-    #	       state = "pressed"
-    #    if ( data.button == ButtonEvent.Button0 ) :
-    #	       button = "B0"
-    #    elif ( data.button == ButtonEvent.Button1 ) :
-    #	       button = "B1"
-    #    else:
-    #	       button = "B2"
-    #    rospy.loginfo("Button %s was %s."%(button, state))
+    def ButtonEventCallback(self,data):
+        if ( data.state == ButtonEvent.RELEASED ) :
+    	       state = "released"
+        else:
+    	       state = "pressed"
+        if ( data.button == ButtonEvent.Button0 ) :
+    	       button = "B0"
+               a = 1
+        elif ( data.button == ButtonEvent.Button1 ) :
+    	       button = "B1"
+        else:
+    	       button = "B2"
+        rospy.loginfo("Button %s was %s."%(button, state))
+        rospy.loginfo(a)
 #    def shutdown(self):
 #        # stop turtlebot
 #        rospy.loginfo("Stop Drawing Squares")
