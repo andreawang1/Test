@@ -41,7 +41,7 @@ class goFR_B():
         stop_cmd.linear.x = 0
 
         #two keep drawing squares.  Go forward for 2 seconds (10 x 5 HZ) then turn for 2 second
-        while not rospy.is_shutdown():
+
             if ( data.button == ButtonEvent.Button0) :
                 # go forward 0.4 m (2 seconds * 0.2 m / seconds)
                 rospy.loginfo("Going Straight")
