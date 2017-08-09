@@ -9,7 +9,7 @@ from geometry_msgs.msg import Twist
 from kobuki_msgs.msg import ButtonEvent
 from math import radians
 
-class goFR():
+class goFR_B():
     def __init__(self):
         # initiliaze
         rospy.init_node('drawasquare', anonymous=False)
