@@ -55,7 +55,6 @@ class goFR_B():
                 self.cmd_vel.publish(turn_cmd)
                 r.sleep()
                 rospy.loginfo("finish")
-#        else:
             for x in range(0,10) :
                 self.cmd_vel.publish(stop_cmd)
                 r.sleep()
