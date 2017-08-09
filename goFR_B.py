@@ -12,8 +12,8 @@ from math import radians
 class goFR_B():
     def __init__(self):
         # initiliaze
-        rospy.init_node('drawasquare', anonymous=False)
-        rospy.init_node("kobuki_button")
+        rospy.init_node('goFR_B', anonymous=False)
+#        rospy.init_node("kobuki_button")
 
         # What to do you ctrl + c
 #        rospy.on_shutdown(self.shutdown)
