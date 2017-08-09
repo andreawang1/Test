@@ -44,20 +44,21 @@ class goFR_B():
 
 #        if ( data.button == ButtonEvent.Button0) :
             # go forward 0.4 m (2 seconds * 0.2 m / seconds)
-        rospy.loginfo("Going Straight")
-        for x in range(0,10) :
-            self.cmd_vel.publish(move_cmd)
-            r.sleep()
-            # turn 90 degrees
-            rospy.loginfo("Turning")
-        for x in range(0,10) :
-            self.cmd_vel.publish(turn_cmd)
-            r.sleep()
-            rospy.loginfo("finish")
+        while not rospy.is_shutdown():
+            rospy.loginfo("Going Straight")
+            for x in range(0,10) :
+                self.cmd_vel.publish(move_cmd)
+                r.sleep()
+                # turn 90 degrees
+                rospy.loginfo("Turning")
+            for x in range(0,10) :
+                self.cmd_vel.publish(turn_cmd)
+                r.sleep()
+                rospy.loginfo("finish")
 #        else:
-        for x in range(0,10) :
-            self.cmd_vel.publish(stop_cmd)
-            r.sleep()
+            for x in range(0,10) :
+                self.cmd_vel.publish(stop_cmd)
+                r.sleep()
 
     def ButtonEventCallback(self,data):
         if ( data.state == ButtonEvent.RELEASED ) :
